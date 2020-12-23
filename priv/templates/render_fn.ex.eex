@@ -1,0 +1,5 @@
+def render(%{name: "<%= name %>"} = assigns) do
+  ~H"""
+  <%= svg %>
+  """
+end

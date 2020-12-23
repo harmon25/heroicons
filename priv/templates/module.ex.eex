@@ -1,0 +1,12 @@
+defmodule <%= module_name %> do
+  @moduledoc """
+  <%= docs %>
+  """
+  use Surface.Component
+
+  prop name, :string, values: ~w(<%= all_names %>), required: true
+
+
+  <%= all_render_functions %>
+
+end
