@@ -1,7 +1,6 @@
 defmodule Heroicons.Outline do
   @moduledoc """
-   For primary navigation and marketing sections, designed to be rendered at 24x24.
-
+  For primary navigation and marketing sections, designed to be rendered at 24x24.
   """
   use Surface.Component
 
@@ -10,7 +9,7 @@ defmodule Heroicons.Outline do
       ~w(template photograph briefcase credit-card question-mark-circle printer trash archive heart plus-sm qrcode video-camera exclamation x paper-airplane calendar variable mail information-circle bookmark-alt refresh film hand exclamation-circle sort-ascending menu-alt-2 annotation plus cube clipboard-list puzzle tag cursor-click folder view-grid chip external-link shield-check chevron-left logout document-remove translate save fire chevron-up arrow-circle-left filter arrow-up arrow-right thumb-down cake phone share moon chart-bar document-search cog pause arrow-circle-right menu-alt-1 volume-up chevron-double-up cloud upload view-boards lock-open folder-add dots-horizontal reply library currency-bangladeshi paper-clip phone-incoming folder-remove chart-pie user pencil light-bulb server phone-outgoing dots-vertical adjustments duplicate sparkles switch-horizontal presentation-chart-line eye-off volume-off desktop-computer star emoji-sad home zoom-in currency-dollar calculator table document map menu cash shopping-cart device-tablet office-building database at-symbol user-circle phone-missed-call camera arrow-narrow-left save-as arrow-left document-add fast-forward bell emoji-happy ban pencil-alt newspaper globe receipt-tax flag scissors minus location-marker chevron-double-left play chat-alt support eye music-note dots-circle-horizontal trending-down presentation-chart-bar switch-vertical minus-circle arrow-narrow-right user-remove thumb-up chevron-down collection clipboard gift menu-alt-4 minus-sm folder-open status-offline receipt-refund academic-cap rewind arrow-circle-up currency-rupee globe-alt stop user-add clipboard-check speakerphone truck scale chevron-right x-circle plus-circle backspace code cube-transparent clock document-report folder-download key chart-square-bar download users arrows-expand currency-euro color-swatch chat selector badge-check wifi chevron-double-down status-online ticket bookmark search-circle arrow-narrow-down login menu-alt-3 finger-print document-duplicate mail-open device-mobile view-list shopping-bag sort-descending hashtag book-open chevron-double-right shield-exclamation arrow-circle-down arrow-narrow-up terminal beaker identification inbox-in cloud-upload view-grid-add rss arrow-down sun currency-pound lightning-bolt check-circle document-download user-group chat-alt-2 link clipboard-copy currency-yen cloud-download check trending-up microphone search lock-closed inbox document-text zoom-out),
     required: true
 
-  prop class, :css_class, default: []
+  prop class, :css_class, default: ["w-6"]
   prop opts, :keyword, default: []
 
   def render(%{name: "template"} = assigns) do

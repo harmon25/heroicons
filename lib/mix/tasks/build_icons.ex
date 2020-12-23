@@ -8,7 +8,8 @@ defmodule Mix.Tasks.BuildIcons do
     :module_name,
     :all_names,
     :all_render_functions,
-    :docs
+    :docs,
+    :default_class
   ])
 
   @tmp "./tmp"
@@ -58,9 +59,12 @@ defmodule Mix.Tasks.BuildIcons do
     module_out = File.open!("#{@tmp}/#{type}.ex.2.txt", [:write, :utf8])
     module_name = gen_module_name(type)
     mod_docs = gen_docs(type)
+    default_class = gen_class(type)
 
     all_fns = File.read!("#{@tmp}/#{type}.ex.1.txt")
-    renderd_mod = render_module(module_name, Enum.join(all_names, " "), all_fns, mod_docs)
+
+    renderd_mod =
+      render_module(module_name, Enum.join(all_names, " "), all_fns, mod_docs, default_class)
 
     IO.write(module_out, renderd_mod)
     File.close(module_out)
@@ -68,25 +72,17 @@ defmodule Mix.Tasks.BuildIcons do
 
   defp create_output(type), do: {type, File.open!("#{@tmp}/#{type}.ex.1.txt", [:write, :utf8])}
 
-  defp gen_module_name("outline") do
-    "Heroicons.Outline"
-  end
+  defp gen_module_name("outline"), do: "Heroicons.Outline"
+  defp gen_module_name("solid"), do: "Heroicons.Solid"
 
-  defp gen_module_name("solid") do
-    "Heroicons.Solid"
-  end
+  defp gen_docs("outline"),
+    do: "For primary navigation and marketing sections, designed to be rendered at 24x24."
 
-  defp gen_docs("outline") do
-    """
-     For primary navigation and marketing sections, designed to be rendered at 24x24.
-    """
-  end
+  defp gen_docs("solid"),
+    do: "For buttons, form elements, and to support text, designed to be rendered at 20x20."
 
-  defp gen_docs("solid") do
-    """
-    For buttons, form elements, and to support text, designed to be rendered at 20x20.
-    """
-  end
+  defp gen_class("solid"), do: "[\"w-5\"]"
+  defp gen_class("outline"), do: "[\"w-6\"]"
 
   defp add_extra(svg_string) do
     String.replace(svg_string, "<svg xmlns=", "<svg class={{@class}} :attrs={{@opts}} xmlns=",
