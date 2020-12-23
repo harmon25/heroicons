@@ -16,12 +16,10 @@ defmodule Mix.Tasks.Download do
   end
 
   defp download(file_name) do
-    IO.puts("DOWNLOADING!")
     System.cmd("wget", [@downloadurl, "-O", file_name])
   end
 
   defp unzip(file_name) do
-    IO.puts("UNZIPPING!")
     System.cmd("unzip", [file_name, "heroicons-0.4.1/optimized/*", "-d", @tmp])
     File.cp_r!("#{@tmp}/heroicons-0.4.1/optimized", "#{@tmp}/icons")
     File.rm_rf!("#{@tmp}/heroicons-0.4.1")

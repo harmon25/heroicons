@@ -44,6 +44,7 @@ defmodule Mix.Tasks.BuildIcons do
           |> File.read!()
           |> String.trim()
           |> String.replace("\n", "")
+          |> add_extra()
 
         iconstr = render_icon(name, svg)
 
@@ -85,5 +86,11 @@ defmodule Mix.Tasks.BuildIcons do
     """
     For buttons, form elements, and to support text, designed to be rendered at 20x20.
     """
+  end
+
+  defp add_extra(svg_string) do
+    String.replace(svg_string, "<svg xmlns=", "<svg class={{@class}} :attrs={{@opts}} xmlns=",
+      global: false
+    )
   end
 end

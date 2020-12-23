@@ -4,15 +4,16 @@ Generated [heroicon](https://heroicons.com/) Surface components
 
 ## Usage
 
-Alias the either module `(Solid, Outline)` in a surface component, and use it!
+Alias either module `(Solid, Outline)` in a surface component, and use it!
 
 ```elixir
 
-alias Heroicons.Solid
+alias Heroicons.{Solid, Outline}
 
 def render(assigns) do
 ~H"""
   <Solid name="briefcase" />
+  <Outline name="briefcase" />
 """
 end
 ```

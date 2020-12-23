@@ -5,7 +5,8 @@ defmodule <%= module_name %> do
   use Surface.Component
 
   prop name, :string, values: ~w(<%= all_names %>), required: true
-
+  prop class, :css_class, default: []
+  prop opts, :keyword, default: []
 
   <%= all_render_functions %>
 
