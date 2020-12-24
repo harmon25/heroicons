@@ -3,9 +3,12 @@ defmodule <%= module_name %> do
   <%= docs %>
   """
   use Surface.Component
+  alias Heroicons.Helpers
 
+  prop size, :string, values: ~w(small normal large), default: "normal"
+  prop display, :string, values: ~w(inline block), default: "inline"
   prop name, :string, values: ~w(<%= all_names %>), required: true
-  prop class, :css_class, default: <%= default_class %>
+  prop class, :css_class, default: []
   prop opts, :keyword, default: []
 
   <%= all_render_functions %>

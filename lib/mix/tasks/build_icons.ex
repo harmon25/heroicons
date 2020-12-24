@@ -8,8 +8,7 @@ defmodule Mix.Tasks.BuildIcons do
     :module_name,
     :all_names,
     :all_render_functions,
-    :docs,
-    :default_class
+    :docs
   ])
 
   @tmp "./tmp"
@@ -22,16 +21,18 @@ defmodule Mix.Tasks.BuildIcons do
     Enum.map(types, &create_output/1)
     |> Enum.each(&handle_type/1)
 
-    File.rm_rf("./lib/heroicons")
-    File.mkdir!("./lib/heroicons")
+    File.mkdir("./lib/heroicons")
 
     File.rename!("#{@tmp}/outline.ex.2.txt", "./lib/heroicons/outline.ex")
     File.rename!("#{@tmp}/solid.ex.2.txt", "./lib/heroicons/solid.ex")
 
-    File.rm_rf!(@tmp)
+    # File.rm_rf!(@tmp)
   end
 
   defp handle_type({type, outfile}) do
+    # remove old generatd file
+    File.rm("./lib/heroicons/#{type}.ex")
+
     type_path = Path.join([@icon_root, type])
 
     all_icons = File.ls!(type_path)
@@ -45,7 +46,7 @@ defmodule Mix.Tasks.BuildIcons do
           |> File.read!()
           |> String.trim()
           |> String.replace("\n", "")
-          |> add_extra()
+          |> add_extra(type: type)
 
         iconstr = render_icon(name, svg)
 
@@ -59,12 +60,10 @@ defmodule Mix.Tasks.BuildIcons do
     module_out = File.open!("#{@tmp}/#{type}.ex.2.txt", [:write, :utf8])
     module_name = gen_module_name(type)
     mod_docs = gen_docs(type)
-    default_class = gen_class(type)
 
     all_fns = File.read!("#{@tmp}/#{type}.ex.1.txt")
 
-    renderd_mod =
-      render_module(module_name, Enum.join(all_names, " "), all_fns, mod_docs, default_class)
+    renderd_mod = render_module(module_name, Enum.join(all_names, " "), all_fns, mod_docs)
 
     IO.write(module_out, renderd_mod)
     File.close(module_out)
@@ -81,11 +80,11 @@ defmodule Mix.Tasks.BuildIcons do
   defp gen_docs("solid"),
     do: "For buttons, form elements, and to support text, designed to be rendered at 20x20."
 
-  defp gen_class("solid"), do: "[\"w-5\"]"
-  defp gen_class("outline"), do: "[\"w-6\"]"
-
-  defp add_extra(svg_string) do
-    String.replace(svg_string, "<svg xmlns=", "<svg class={{@class}} :attrs={{@opts}} xmlns=",
+  defp add_extra(svg_string, opts) do
+    String.replace(
+      svg_string,
+      "<svg xmlns=",
+      "<svg class={{@class}} :attrs={{Keyword.merge(Helpers.size(\"#{opts[:type]}\", @size), @opts)}} style=\"display:{{@display}};\" xmlns=",
       global: false
     )
   end

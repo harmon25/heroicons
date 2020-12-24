@@ -5,12 +5,13 @@ defmodule Heroicons.MixProject do
     [
       app: :heroicons,
       version: "0.1.0",
-      elixir: "~> 1.11",
+      elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
       package: package(),
       name: "Heroicons",
+      compilers: [:phoenix] ++ Mix.compilers(),
       source_url: "https://github.com/harmon25/heroicons"
     ]
   end
