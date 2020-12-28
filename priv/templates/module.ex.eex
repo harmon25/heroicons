@@ -3,7 +3,7 @@ defmodule <%= module_name %> do
   <%= docs %>
   """
   use Surface.Component
-  alias Heroicons.Helpers
+  import Heroicons.Helpers, only: [merge_attrs: 3]
 
   prop size, :string, values: ~w(small normal large), default: "normal"
   prop display, :string, values: ~w(inline block), default: "inline"

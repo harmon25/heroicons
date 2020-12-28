@@ -84,7 +84,7 @@ defmodule Mix.Tasks.BuildIcons do
     String.replace(
       svg_string,
       "<svg xmlns=",
-      "<svg class={{@class}} :attrs={{Keyword.merge(Helpers.size(\"#{opts[:type]}\", @size), @opts)}} style=\"display:{{@display}};\" xmlns=",
+      "<svg class={{@class}} style=\"display:{{@display}};\" :attrs={{merge_attrs(\"#{opts[:type]}\", @size, @opts)}} xmlns=",
       global: false
     )
   end
