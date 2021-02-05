@@ -5,12 +5,17 @@ defmodule <%= module_name %> do
   use Surface.Component
   import Heroicons.Helpers, only: [merge_attrs: 3]
 
-  prop size, :string, values: ~w(small normal large), default: "normal"
+  prop size, :string, values: ~w(tiny small normal large), default: "normal"
   prop display, :string, values: ~w(inline block), default: "inline"
   prop name, :string, values: ~w(<%= all_names %>), required: true
   prop class, :css_class, default: []
   prop opts, :keyword, default: []
 
   <%= all_render_functions %>
+
+  def render(assigns) do
+    ~H""
+  end
+
 
 end

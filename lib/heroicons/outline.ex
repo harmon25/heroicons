@@ -5,7 +5,7 @@ defmodule Heroicons.Outline do
   use Surface.Component
   import Heroicons.Helpers, only: [merge_attrs: 3]
 
-  prop size, :string, values: ~w(small normal large), default: "normal"
+  prop size, :string, values: ~w(tiny small normal large), default: "normal"
   prop display, :string, values: ~w(inline block), default: "inline"
 
   prop name, :string,
@@ -1370,5 +1370,9 @@ defmodule Heroicons.Outline do
     ~H"""
     <svg class={{@class}} style="display:{{@display}};" :attrs={{merge_attrs("outline", @size, @opts)}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"/></svg>
     """
+  end
+
+  def render(assigns) do
+    ~H""
   end
 end

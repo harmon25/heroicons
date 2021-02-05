@@ -3,6 +3,8 @@ defmodule Heroicons.Helpers do
     Keyword.merge(dimensions(type, size), opts)
   end
 
+  # w-4
+  defp dimensions("outline", "tiny"), do: calc_dimension(4)
   # w-5
   defp dimensions("outline", "small"), do: calc_dimension(5)
   # w-6
@@ -10,6 +12,8 @@ defmodule Heroicons.Helpers do
   # w-7
   defp dimensions("outline", "large"), do: calc_dimension(7)
 
+  # w-3
+  defp dimensions("solid", "tiny"), do: calc_dimension(3)
   # w-4
   defp dimensions("solid", "small"), do: calc_dimension(4)
   # w-5
