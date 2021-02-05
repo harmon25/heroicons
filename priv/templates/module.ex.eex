@@ -17,5 +17,8 @@ defmodule <%= module_name %> do
     ~H""
   end
 
-
+  @doc "List of all valid names"
+  def name_values() do
+    ~w(<%= all_names %>)
+  end
 end
