@@ -11,7 +11,7 @@ defmodule Heroicons.MixProject do
       description: description(),
       package: package(),
       name: "Heroicons",
-      compilers: [:phoenix] ++ Mix.compilers(),
+      compilers: [:surface, :phoenix] ++ Mix.compilers(),
       source_url: "https://github.com/harmon25/heroicons"
     ]
   end
@@ -40,7 +40,7 @@ defmodule Heroicons.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:surface, "~> 0.2.0"},
+      {:surface, git: "git@github.com:msaraiva/surface.git", branch: "ms-component-assets", override: true},
       {:ex_doc, "~> 0.14", only: :dev, runtime: false}
     ]
   end
