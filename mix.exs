@@ -40,7 +40,7 @@ defmodule Heroicons.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:surface, "~> 0.2.0"},
+      {:surface, "~> 0.3.0"},
       {:ex_doc, "~> 0.14", only: :dev, runtime: false}
     ]
   end
